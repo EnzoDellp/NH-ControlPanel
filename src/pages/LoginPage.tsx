@@ -84,7 +84,7 @@ export default function LoginPage() {
         </div>
         <div className="flex flex-col items-center justify-center bg-[#f2f2f7]">
           <div className="max-w-lg px-5 py-16 md:px-10 md:py-24 lg:py-32">
-            <div className="mb-6 ml-2 flex h-15 w-20 items-center justify-center bg-[#276ef1] [box-shadow:rgb(171,_196,_245)_-8px_8px]">
+            <div className="mb-6 ml-2 flex h-15 w-20 items-center justify-center bg-[#ffffff] [box-shadow:rgb(171,_196,_245)_-8px_8px]">
               <img
                 src="\logo_wolf_horizontal.png"
                 alt=""

@@ -7,11 +7,8 @@ function App() {
   return (
     <Router>
       <Routes>
-        {/* Página de inicio con el formulario de login */}
         <Route path="/" element={<LoginPage />} />
-        {/* Página de creación de cuenta */}
         <Route path="/create-account" element={<CreateAccount />} />
-        {/* Página de recuperación de contraseña */}
         <Route path="/forgot-password" element={<ForgotPassword />} />
       </Routes>
     </Router>
