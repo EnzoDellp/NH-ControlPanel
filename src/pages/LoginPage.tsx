@@ -1,12 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import InputsForm from "../components/InputsForm";
 import { useState } from "react";
 export default function LoginPage() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Email", email, "password", password);
+    navigate("/panel");
   };
   return (
     <section>
