@@ -1,4 +1,12 @@
+import { useState } from "react";
+import InputsForm from "../components/InputsForm";
 export default function CreateAccount() {
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("Email", email, "password", password);
+  };
   return (
     <section>
       <div className="grid md:h-screen md:grid-cols-2">
@@ -11,10 +19,7 @@ export default function CreateAccount() {
               className="mx-auto mb-4 max-w-sm pb-4"
               name="wf-form-password"
               method="get"
-              onSubmit={(e) => {
-                e.preventDefault();
-                console.log("desde Crear cuenta");
-              }}
+              onSubmit={handleSubmit}
             >
               <div className="relative">
                 <img
@@ -22,13 +27,11 @@ export default function CreateAccount() {
                   src="https://assets.website-files.com/6357722e2a5f19121d37f84d/6357722e2a5f190b7e37f878_EnvelopeSimple.svg"
                   className="absolute bottom-0 left-[5%] right-auto top-[26%] inline-block"
                 />
-                <input
+                <InputsForm
                   type="email"
+                  placeholder="correo Electronico"
+                  onChange={(e) => setEmail(e.target.value)}
                   className="mb-4 block h-9 w-full border border-black bg-[#f2f2f7] px-3 py-6 pl-14 text-sm text-[#333333]"
-                  maxLength={256}
-                  name="email"
-                  placeholder="E-Mail"
-                  required
                 />
               </div>
               <div className="relative mb-4">
@@ -37,11 +40,11 @@ export default function CreateAccount() {
                   src="https://assets.website-files.com/6357722e2a5f19121d37f84d/6357722e2a5f19601037f879_Lock-2.svg"
                   className="absolute bottom-0 left-[5%] right-auto top-[26%] inline-block"
                 />
-                <input
+                <InputsForm
                   type="password"
-                  className="mb-4 block h-9 w-full border border-black bg-[#f2f2f7] px-3 py-6 pl-14 text-sm text-[#333333]"
                   placeholder="Contraseña"
-                  required
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="mb-4 block h-9 w-full border border-black bg-[#f2f2f7] px-3 py-6 pl-14 text-sm text-[#333333]"
                 />
               </div>
               <div className="relative mb-4">
@@ -50,11 +53,11 @@ export default function CreateAccount() {
                   src="https://assets.website-files.com/6357722e2a5f19121d37f84d/6357722e2a5f19601037f879_Lock-2.svg"
                   className="absolute bottom-0 left-[5%] right-auto top-[26%] inline-block"
                 />
-                <input
+                <InputsForm
                   type="password"
+                  placeholder="Repite tu Contraseña"
+                  onChange={(e) => setPassword(e.target.value)}
                   className="mb-4 block h-9 w-full border border-black bg-[#f2f2f7] px-3 py-6 pl-14 text-sm text-[#333333]"
-                  placeholder="Repetir Contraseña"
-                  required
                 />
               </div>
               <button
@@ -84,6 +87,9 @@ export default function CreateAccount() {
                 className="inline-block"
               />
             </div>
+            <p className="text-xl text-center font-bold">
+              Se Parte de Nuestro Equipo!
+            </p>
           </div>
         </div>
       </div>
