@@ -32,7 +32,7 @@ export default function LoginPage() {
                   type="email"
                   placeholder="Correo Electronico"
                   onChange={(e) => setEmail(e.target.value)}
-                  className="mb-4 block h-9 w-full border border-black bg-[#f2f2f7] px-3 py-6 pl-14 text-sm text-[#333333]"
+                  className="mb-4 block  h-9 w-full border border-black bg-[#f2f2f7] px-3 py-6 pl-14 text-sm text-[#333333]"
                 />
               </div>
               <div className="relative mb-4">
@@ -90,7 +90,7 @@ export default function LoginPage() {
               <img
                 src="\logo_wolf_horizontal.png"
                 alt=""
-                className="inline-block"
+                className="inline-block "
               />
             </div>
             <p className="mb-8 text-[#647084] md:mb-12 lg:mb-16">
