@@ -93,7 +93,7 @@ export default function LoginPage() {
                 className="inline-block "
               />
             </div>
-            <p className="mb-8 text-[#647084] md:mb-12 lg:mb-16">
+            <p className="mb-8  md:mb-12 lg:mb-16">
               Impulsa tu futuro con conocimiento práctico y visión innovadora.
               En nuestro instituto, transformarás ideas en proyectos reales,
               mientras desarrollas habilidades clave para un mundo tecnológico
