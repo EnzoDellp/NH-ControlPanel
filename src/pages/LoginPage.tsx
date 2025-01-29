@@ -1,14 +1,37 @@
 import { Link, useNavigate } from "react-router-dom";
 import InputsForm from "../components/InputsForm";
-import { useState } from "react";
+
+import { useForm } from "react-hook-form";
+import Error from "../components/Error";
+import { UserIcon, LockClosedIcon } from "@heroicons/react/24/outline";
+import { DraftUser } from "../types/UserDraft";
+import { usuariosDB } from "../data/db";
 export default function LoginPage() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Email", email, "password", password);
-    navigate("/panel");
+
+  // const handleSubmit = (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   console.log("Email", email, "password", password);
+  //   navigate("/panel");
+  // };
+
+  const {
+    register,
+    // setValue,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<DraftUser>();
+  const logearUser = (data: DraftUser) => {
+    const userFound = usuariosDB.find(
+      (user) => user.user === data.user && user.password === data.password
+    );
+    if (userFound) {
+      navigate("/panel");
+    } else {
+      alert("fallo la validacion");
+    }
+    reset(); // esto reinicia el formulario automaticamente con react-hook-form
   };
   return (
     <section>
@@ -20,33 +43,35 @@ export default function LoginPage() {
             </h2>
             <form
               className="mx-auto mb-4 max-w-sm pb-4"
-              onSubmit={handleSubmit}
+              onSubmit={handleSubmit(logearUser)}
             >
               <div className="relative">
-                <img
-                  alt=""
-                  src="https://assets.website-files.com/6357722e2a5f19121d37f84d/6357722e2a5f190b7e37f878_EnvelopeSimple.svg"
-                  className="absolute bottom-0 left-[5%] right-auto top-[26%] inline-block"
-                />
+                <UserIcon className="absolute w-9 bottom-2"></UserIcon>
+
                 <InputsForm
-                  type="email"
-                  placeholder="Correo Electronico"
-                  onChange={(e) => setEmail(e.target.value)}
+                  id="user"
+                  type="text"
+                  placeholder="Nombre de Usuario"
                   className="mb-4 block  h-9 w-full border border-black bg-[#f2f2f7] px-3 py-6 pl-14 text-sm text-[#333333]"
+                  {...register("user", {
+                    required: "El nombre del paciente es obligatorio",
+                  })}
                 />
+
+                {errors.user && <Error>{errors.user?.message}</Error>}
               </div>
               <div className="relative mb-4">
-                <img
-                  alt=""
-                  src="https://assets.website-files.com/6357722e2a5f19121d37f84d/6357722e2a5f19601037f879_Lock-2.svg"
-                  className="absolute bottom-0 left-[5%] right-auto top-[26%] inline-block"
-                />
+                <LockClosedIcon className="absolute w-9 bottom-2"></LockClosedIcon>
                 <InputsForm
+                  id="password"
                   type="password"
                   placeholder="Contraseña"
-                  onChange={(e) => setPassword(e.target.value)}
                   className="mb-4 block h-9 w-full border border-black bg-[#f2f2f7] px-3 py-6 pl-14 text-sm text-[#333333]"
+                  {...register("password", {
+                    required: "El nombre del paciente es obligatorio",
+                  })}
                 />
+                {errors.password && <Error>{errors.password?.message}</Error>}
               </div>
               <button
                 type="submit"
