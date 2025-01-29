@@ -1,12 +1,13 @@
 export const usuariosDB = [
   {
-    user: "javier",
+    email: "javier",
     password: "javier",
     tipo: "admin",
   },
   {
-    user: "enzo",
+    email: "enzo",
     password: "enzo",
     tipo: "admin",
   },
 ];
+export default usuariosDB;
