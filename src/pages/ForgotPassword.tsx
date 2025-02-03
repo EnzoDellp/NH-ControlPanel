@@ -28,6 +28,7 @@ function ForgotPassword() {
                   className="absolute bottom-0 left-[5%] right-auto top-[26%] inline-block"
                 />
                 <InputsForm
+                  id="email"
                   type="email"
                   placeholder="Correo Electronico"
                   onChange={(e) => setEmail(e.target.value)}
@@ -64,6 +65,9 @@ function ForgotPassword() {
             </div>
             <p className="text-xl text-center font-bold">
               Te enviaremos un E-Mail!
+            </p>
+            <p className="text-lg text-center font-bold mt-2">
+              No Olvides Revisar tu casilla de SPAM!
             </p>
           </div>
         </div>

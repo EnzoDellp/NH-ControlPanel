@@ -1,19 +1,13 @@
 import { Link, useNavigate } from "react-router-dom";
 import InputsForm from "../components/InputsForm";
-
+import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import Error from "../components/Error";
 import { UserIcon, LockClosedIcon } from "@heroicons/react/24/outline";
 import { DraftUser } from "../types/UserDraft";
-import { usuariosDB } from "../data/db";
+import usuariosDB from "../data/db";
 export default function LoginPage() {
   const navigate = useNavigate();
-
-  // const handleSubmit = (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   console.log("Email", email, "password", password);
-  //   navigate("/panel");
-  // };
 
   const {
     register,
@@ -22,17 +16,24 @@ export default function LoginPage() {
     formState: { errors },
     reset,
   } = useForm<DraftUser>();
+  // Validacion de los campos
   const logearUser = (data: DraftUser) => {
     const userFound = usuariosDB.find(
-      (user) => user.user === data.user && user.password === data.password
+      (user) =>
+        user.user.trim().toLowerCase() === data.user.trim().toLowerCase() &&
+        user.password === data.password
     );
     if (userFound) {
-      navigate("/panel");
+      toast.success("Bienvenido al Panel de control");
+      setTimeout(() => {
+        navigate("/panel");
+      }, 3000);
     } else {
-      alert("fallo la validacion");
+      toast.error("Usuario no Encontrado");
     }
     reset(); // esto reinicia el formulario automaticamente con react-hook-form
   };
+
   return (
     <section>
       <div className="grid md:h-screen md:grid-cols-2">

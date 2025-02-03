@@ -10,4 +10,5 @@ export const usuariosDB = [
     tipo: "admin",
   },
 ];
+
 export default usuariosDB;
